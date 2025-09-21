@@ -45,7 +45,7 @@ export class VideoManager {
         this.setupFramePreview();
 
         // 摄像头状态，用户切换镜头
-        this.facingMode = 'user';
+        this.facingMode = 'environment';
         this.onFrame = null;
         this.fps = null;
         
