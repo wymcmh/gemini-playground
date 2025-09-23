@@ -142,6 +142,7 @@ body {
 .log-entry.system .message-content {
     background: none;
     padding: 0;
+    justify-content: flex-end;
 }
 
 @keyframes fadeIn {
