@@ -34,8 +34,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: var(--spacing-md);
+    height: 100vh;
 }
 
 #app {
@@ -45,9 +44,16 @@ body {
     box-shadow: var(--shadow-md);
     width: 100%;
     max-width: 800px;
-    height: 90vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+@media (max-width: 600px) {
+    #app {
+        border-radius: 0;
+        padding: var(--spacing-md);
+    }
 }
 
 #logs-container {
@@ -96,24 +102,21 @@ body {
     flex-shrink: 0;
 }
 
-.log-entry .message-content {
-    background-color: var(--surface-dark-2);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-lg);
+.message-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: baseline;
+    flex-grow: 1;
 }
 
-.log-entry .timestamp {
-    font-size: 0.75em;
-    color: var(--text-secondary-dark);
-    margin-top: var(--spacing-sm);
-    order: 2;
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    margin-left: 10px;
 }
 
 .log-entry.user {
-    align-self: flex-end;
-    flex-direction: row-reverse;
+    justify-content: flex-start;
 }
 
 .log-entry.user .message-content {
