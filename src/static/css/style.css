@@ -104,7 +104,7 @@ body {
 
 .message-content {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: baseline;
     flex-grow: 1;
 }
@@ -112,7 +112,7 @@ body {
 .timestamp {
     font-size: 0.8em;
     color: #888;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .log-entry.user {
@@ -134,11 +134,9 @@ body {
 }
 
 .log-entry.system {
-    align-self: center;
     font-size: 0.8em;
     color: var(--text-secondary-dark);
     max-width: 100%;
-    text-align: center;
 }
 
 .log-entry.system .message-content {
