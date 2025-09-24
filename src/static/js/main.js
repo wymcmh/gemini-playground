@@ -156,9 +156,10 @@ function updateUI(newState) {
     micIcon.textContent = state.isRecording ? 'mic_off' : 'mic';
     micButton.classList.toggle('recording', state.isRecording);
 
-    connectButton.innerHTML = state.isConnecting ? '<span class="spinner"></span>' : (state.isConnected ? '<span>Disconnect</span>' : '<span>Connect</span>');
+    connectButton.innerHTML = state.isConnecting ? '<span class="spinner"></span>' : (state.isConnected ? '<span>Disconnect</span>' : (state.isDisconnected ? '<span>Disconnected</span>' : '<span>Connect</span>'));
     connectButton.classList.toggle('connected', state.isConnected);
     connectButton.classList.toggle('connecting', state.isConnecting);
+    connectButton.classList.toggle('disconnected', state.isDisconnected);
     connectButton.disabled = state.isConnecting;
 
     messageInput.disabled = !state.isConnected;
@@ -289,7 +290,7 @@ async function connectToWebsocket() {
         return;
     }
 
-    updateUI({ isConnecting: true });
+    updateUI({ isConnecting: true, isDisconnected: false });
 
     // Save values to localStorage
     localStorage.setItem('gemini_api_key', apiKeyInput.value);
@@ -327,14 +328,14 @@ async function connectToWebsocket() {
         const errorMessage = error.message || 'Unknown error';
         Logger.error('Connection error:', error);
         logMessage(`Connection error: ${errorMessage}`, 'system');
-        updateUI({ isConnected: false, isConnecting: false });
+        updateUI({ isConnected: false, isConnecting: false, isDisconnected: true });
     }
 }
 
 /**
  * Disconnects from the WebSocket server.
  */
-function disconnectFromWebsocket() {
+function disconnectFromWebsocket(unexpected = false) {
     client.disconnect();
     if (audioStreamer) {
         audioStreamer.stop();
@@ -357,6 +358,7 @@ function disconnectFromWebsocket() {
         isRecording: false,
         isVideoActive: false,
         isScreenSharing: false,
+        isDisconnected: unexpected,
     });
 }
 
@@ -383,6 +385,7 @@ client.on('log', (log) => {
 
 client.on('close', (event) => {
     logMessage(`WebSocket connection closed (code ${event.code})`, 'system');
+    disconnectFromWebsocket(true); // Pass true for unexpected closure
 });
 
 client.on('audio', async (data) => {

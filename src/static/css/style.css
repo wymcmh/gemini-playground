@@ -281,6 +281,10 @@ body {
     background-color: var(--danger-color);
 }
 
+#connect-button.disconnected {
+    background-color: var(--text-secondary-dark);
+}
+
 #connect-button .spinner {
     display: none;
     border: 2px solid rgba(255,255,255,0.3);
