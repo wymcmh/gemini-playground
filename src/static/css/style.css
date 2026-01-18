@@ -107,6 +107,11 @@ body {
     flex-direction: row-reverse;
     align-items: baseline;
     flex-grow: 1;
+    font-family: var(--font-family);
+    font-size: 1em;
+    line-height: 1.5;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--spacing-md);
 }
 
 .timestamp {
@@ -134,7 +139,6 @@ body {
 }
 
 .log-entry.system {
-    font-size: 0.8em;
     color: var(--text-secondary-dark);
     max-width: 100%;
 }
@@ -143,6 +147,7 @@ body {
     background: none;
     padding: 0;
     justify-content: flex-end;
+    font-size: 0.9em;
 }
 
 @keyframes fadeIn {
