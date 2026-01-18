@@ -136,6 +136,7 @@ body {
 
 .log-entry.ai .message-content {
     border-bottom-left-radius: var(--spacing-sm);
+    font-size: 0.9em;
 }
 
 .log-entry.system {
