@@ -59,13 +59,13 @@ enabled = true
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#durable-objects
 [[durable_objects.bindings]]
 name = "WEBSOCKET_PROXY"
-class_name = "WebSocketProxyD0"
+class_name = "WebSocketProxyDO"
 
 # Durable Object migrations.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#migrations
 [[migrations]]
 tag = "v1"
-new_classes = ["WebSocketProxyD0"]
+new_classes = ["WebSocketProxyDO"]
 
 # Bind a Hyperdrive configuration. Use to accelerate access to your existing databases from Cloudflare Workers.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#hyperdrive
