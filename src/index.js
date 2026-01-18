@@ -58,8 +58,8 @@ function getContentType(path) {
   return types[ext] || 'text/plain';
 }
 
-async function handleWebSocket(request, env) {
-
+// old method
+async function handleWebSocket_old(request, env) {
 
   if (request.headers.get("Upgrade") !== "websocket") {
 		return new Response("Expected WebSocket connection", { status: 400 });
@@ -175,6 +175,21 @@ async function handleWebSocket(request, env) {
    status: 101,
    webSocket: client,
    });
+}
+
+// new method
+async function handleWebSocket(request, env) {
+  if (request.headers.get('Upgrade') !== 'websocket') {
+    return new Response('Expected WebSocket', { status: 400 });
+  }
+
+  // 为每个客户端会话创建一个唯一的 Durable Object ID
+  // 使用 `newUniqueId()` 确保独立，或使用基于会话的固定 ID
+  const id = env.WEBSOCKET_PROXY.newUniqueId();
+  const stub = env.WEBSOCKET_PROXY.get(id);
+
+  // 将请求转发给 Durable Object 处理
+  return stub.fetch(request);
 }
 
 async function handleAPIRequest(request, env) {
