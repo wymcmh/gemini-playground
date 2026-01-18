@@ -1,3 +1,6 @@
+
+import { WebSocketProxyDO } from './WebSocketProxyDO.mjs';
+
 const assetManifest = {};
 
 export default {
@@ -208,3 +211,7 @@ async function handleAPIRequest(request, env) {
     });
   }
 }
+
+// 导出 Durable Object 类（必须）
+export { WebSocketProxyDO };
+
