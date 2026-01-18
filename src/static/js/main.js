@@ -428,6 +428,9 @@ client.on('setupcomplete', () => {
 
 client.on('turncomplete', () => {
     updateUI({ isUsingTool: false });
+    if (audioStreamer) {
+        audioStreamer.complete();
+    }
     logMessage('Turn complete', 'system');
 });
 
