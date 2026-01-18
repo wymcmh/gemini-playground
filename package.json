@@ -6,10 +6,17 @@
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "test": "vitest"
+    "test": "vitest",
+    "server": "node src/server.js",
+    "server:dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.1",
+    "ws": "^8.19.0"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.5.2",
+    "nodemon": "^3.1.11",
     "vitest": "2.1.8",
     "wrangler": "^4.38.0"
   }

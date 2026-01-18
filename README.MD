@@ -61,6 +61,22 @@ Mac/Linux 安装Deno:
 >cd 项目目录 <br>
 >deno run --allow-net --allow-read src/deno_index.ts
 
+### Node.js 部署
+
+1. 安装依赖：
+```bash
+npm install
+```
+
+2. 启动服务器：
+```bash
+npm run server
+```
+
+3. 访问：http://localhost:3000
+
+详细部署方案请参考：[DEPLOYMENT.md](DEPLOYMENT.md)
+
 
 ## 使用方法
 ### 多模态对话
